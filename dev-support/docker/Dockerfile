@@ -85,6 +85,13 @@ RUN apt-get -q update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Without this we'll get
+# Command "/usr/bin/python -u -c "import setuptools, tokenize;__file__='/tmp/pip-build-tewIX_/isort/setup.py';exec(compile(getattr(tokenize, 'open', open)(__file__).read().replace('\r\n', '\n'), __file__, 'exec'))" install --record /tmp/pip-aRduVn-record/install-record.txt --single-version-externally-managed --compile" failed with error code 1 in /tmp/pip-build-tewIX_/isort/
+# You are using pip version 8.1.1, however version 21.0.1 is available.
+# You should consider upgrading via the 'pip install --upgrade pip' command.
+
+RUN pip install --upgrade pip
+
 ######
 # Set env vars required to build Hadoop
 ######
